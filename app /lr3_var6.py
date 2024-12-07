@@ -6,12 +6,27 @@ class Circle:
             radius = float(radius)
             if radius <= 0:
                 print("Ошибка: Радиус должен быть положительным числом больше нуля.")
-                self.radius = None
+                self._radius = None
             else:
-                self.radius = radius
+                self._radius = radius
         except ValueError:
             print("Ошибка: Радиус должен быть числом.")
-            self.radius = None
+            self._radius = None
+
+    @property 
+    def area(self):
+        if self._radius is None:
+            print("Ошибка: Площадь не может быть рассчитана, так как радиус не был корректно задан.") 
+            return None 
+        try: 
+            return math.pi * self.radius ** 2 
+        except TypeError: 
+            print("Ошибка: Радиус должен быть числом для вычисления площади круга.") 
+            return None
+
+    @property 
+    def radius(self): 
+        return self._radius
 
     @staticmethod
     def about():
